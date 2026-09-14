@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/navtop.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.jpeg' %}" />
+    <title>1723 Consulting Group</title>
+{% block head %}{% endblock %}
+</head>
+
+<body>
+  
+    <header>
+        <nav>
+             {% if request.path != "/" and request.path != "/about/" and request.path != "/contact-us/" %}
+                <div class="header-logo-container">
+                     <a href="{% url 'home' %}"> <img src="{% static 'images/about_us.JPG' %}" alt="Culture"/></a>
+                </div>
+            {% endif %}
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'employers' %}">Employers</a></li>
+                <li><a href="{% url 'careers' %}">Job Seekers</a></li>
+                <li><a href="{% url 'job_board' %}">Job Board</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'contact-us' %}">Contact Us     </a></li>
+            
+
+            </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    
+    {% endblock %}
+</main>
+
+<footer>
+    <div class="header-logo-container">
+        <img src="{% static 'images/logo.jpeg' %}" alt="1723 Consulting Group Logo" />
+    </div>
+
+
+    <div class="middle_items">
+        <p>1723 Consulting Group - All rights reserved &copy; 2026 - </p>
+        <a href="{% url 'login' %}">Admin</a>
+    </div>
+
+    <div class="social-icons">
+    <h4>Contact us:</h4>
+
+    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <img src="{% static 'images/facebook_logo.png' %}" alt="Facebook">
+    </a>
+
+    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <img src="{% static 'images/linkedin.webp' %}" alt="LinkedIn">
+    </a>
+
+    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <img src="{% static 'images/Instagram-logo.png' %}" alt="Instagram">
+    </a>
+
+    <a href="mailto:info@1723consultinggroup.com">
+        <button>info@1723consultinggroup.com</button>
+    </a>
+</div>
+</footer>
+
+
+</body>
+</html>

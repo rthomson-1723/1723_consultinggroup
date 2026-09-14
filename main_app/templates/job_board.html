@@ -1,0 +1,123 @@
+ {% extends "nav.html" %}
+{% load static %}
+{% load job_filters %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/box.css' %}" />
+<link rel="stylesheet" href="{% static 'css/job-board.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="job_board_boxes">
+    <div class ="welcome_box">
+        <div class= "search_box">
+            <h3>A Stronger Future Starts With You - Invest in your future</h3>
+            <form method="GET" action="">
+                <div class="search-fields">
+
+                    <input 
+                        type="text" 
+                        name="keyword" 
+                        value="{{ keyword }}"
+                        placeholder="Job title or keyword"
+                    >
+
+                    <input 
+                        type="text" 
+                        name="location" 
+                        value="{{ location }}"
+                        placeholder="Location"
+                    >
+
+                    <button type="submit">Search</button>
+                </div>
+                {% if keyword or location %}
+                    <div class="searched-words">
+                        <span class="searched-label">Searched:</span>
+
+                        {% if keyword %}
+                            <span class="search-tag">
+                                {{ keyword }}
+                                <a href="?location={{ location|urlencode }}" class="clear-search" title="Remove keyword">×</a>
+                            </span>
+                        {% endif %}
+
+                        {% if location %}
+                            <span class="search-tag">
+                                {{ location }}
+                                <a href="?keyword={{ keyword|urlencode }}" class="clear-search" title="Remove location">×</a>
+                            </span>
+                        {% endif %}
+
+                        {% if keyword and location %}
+                            <a href="?" class="clear-all">Clear all</a>
+                        {% endif %}
+                    </div>
+                {% endif %}     
+            </form>
+        </div>
+
+    </div>
+    <div class ="jobs">
+        <h2>Available positions: </h2>
+        <div class ="job_info">
+            {% for job in jobs %}
+                <div class="job-card">
+                    <h3>
+                        <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a>
+                    </h3>
+                    <p><strong>Company:</strong> {{ job.company }}</p>
+                    <p><strong>Location:</strong> {{ job.location }}</p>
+                    <p>{{ job.get_employment_type_display }}</p>
+                    <small>Posted {{ job.created_at|days_ago }}</small>
+
+                </div>      
+                   
+                {% empty %}
+                    <p>There is no current openings. Please fill  <a href="{% url 'careers' %}">general application</a> and a member of our team will reach out when you have 
+                        a position that matches your skills become available.</p>
+            {% endfor %}
+        </div>
+        
+    {% if jobs.has_other_pages %}
+        <div class="pagination">
+
+            {% if jobs.has_previous %}
+                <a href="?page={{ jobs.previous_page_number }}&keyword={{ keyword }}&location={{ location }}">
+
+                    &laquo; Previous
+                </a>
+            {% endif %}
+
+            {% for num in jobs.paginator.page_range %}
+
+                {% if jobs.number == num %}
+                    <span class="current">
+                        {{ num }}
+                    </span>
+                {% else %}
+                    <a href="?page={{ num }}&keyword={{ keyword }}&location={{ location }}">
+
+                        {{ num }}
+                    </a>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if jobs.has_next %}
+                <a href="?page={{ jobs.next_page_number }}&keyword={{ keyword }}&location={{ location }}">
+
+                    Next &raquo;
+                </a>
+            {% endif %}
+
+        </div>
+    {% endif %}
+    
+        <p> Did not find what you were looking for? Please fill our <a href="{% url 'careers' %}">general application</a> and a member of our team will reach ou to you when 
+            a position that matches your skills becomes available.</p>
+        <hr>
+    </div>
+</div>
+{% endblock %}

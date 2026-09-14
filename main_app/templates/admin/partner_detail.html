@@ -1,0 +1,38 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="partner-card">
+
+    <h1>{{ partner.company_name }}</h1>
+
+    <p><strong>Company:</strong> {{ partner.company_name }}</p>
+
+    <p><strong>Contact:</strong> {{ partner.first_name }} {{ partner.last_name }}</p>
+
+    <p><strong>Email:</strong> {{ partner.email }}</p>
+
+    <p><strong>Phone:</strong> {{ partner.phone }}</p>
+
+    <p><strong>Service:</strong> {{ partner.service }}</p>
+
+    <p><strong>Skills Needed:</strong> {{ partner.skills_needed }}</p>
+
+    <p><strong>Service Location:</strong> {{ partner.job_location }}</p>
+
+    <p><strong>Description:</strong></p>
+    <p>{{ partner.description }}</p>
+
+    <p><strong>Referral Source:</strong> {{ partner.referral_source }}</p>
+
+    <a href="{% url 'partners' %}">← Back to Partner Inquiries</a>
+
+</div>
+
+{% endblock %}

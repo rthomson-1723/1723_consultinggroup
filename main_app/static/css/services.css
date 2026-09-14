@@ -1,0 +1,172 @@
+
+.consulting_box,
+.staffing_box,
+.sector_box {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    flex: 1 1 45%;
+    position: relative;
+}
+.sector_box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.all_services{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.consulting_box img {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 250px;
+}
+
+.individual_sector img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+.consulting_box:hover,
+.staffing_box:hover,
+.sector_box:hover {
+    transform: translateY(-5px);
+}
+
+
+.consulting_box h3,
+.staffing_box h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #0b1f3a;
+    position: relative; /* above overlay */
+    z-index: 1;
+}
+
+.sector_box h3{
+    align-self: start;
+}
+
+.individual_sector{
+    gap: 25px;
+}
+
+.cta-section {
+    background-image: url("../images/bottom.jpg");
+    background-color: #000000;
+    color: black;
+    background-size: cover;
+    background-position: center;
+    margin-top: 40px;
+}
+
+.cta-section h2 {
+    margin-bottom: 10px;
+}
+
+.cta-section p {
+    margin-bottom: 20px;
+}
+
+.cta-section .primary-btn {
+    background-color: lightsteelblue;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.cta-section .primary-btn:hover {
+    background-color: #cccccc;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 992px) {
+
+    .all_services {
+        flex-direction: column;
+    }
+
+    .consulting_box,
+    .staffing_box,
+    .sector_box {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .consulting_box img,
+    .staffing_box img {
+        max-width: 100%;
+        margin-right: 0;
+    }
+
+    .individual_sector img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .sector_box h3 {
+        align-self: center;
+    }
+}
+
+/* =========================
+   MOBILE PHONES
+========================= */
+@media (max-width: 600px) {
+
+    .consulting_box,
+    .staffing_box,
+    .sector_box {
+        padding: 15px;
+        font-size: 16px;
+        gap: 15px;
+    }
+
+    .consulting_box h3,
+    .staffing_box h3,
+    .sector_box h3 {
+        font-size: 22px;
+    }
+
+    .consulting_box img,
+    .staffing_box img,
+    .individual_sector img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .cta-section {
+        text-align: center;
+        padding: 30px 15px;
+    }
+
+    .cta-section h2 {
+        font-size: 28px;
+    }
+
+    .cta-section p {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,183 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/job_seeker.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="general_app">
+  <h4>
+    <strong>
+      Complete this form to submit a general application. If you are looking for a specific position,
+      please visit our 
+      <a href="{% url 'job_board' %}">job board</a>
+      to find opportunities more tailored to your skills.
+      Once submitted, a member of our team will review your information
+      and contact you with the next steps in the hiring process.
+    </strong>
+  </h4>
+
+  <div class="form-box">
+    <h1>Submit a General Application</h1>
+
+    <form method="post" class="form-container" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ applicant_inquiries_form.first_name.label_tag }}
+    {{ applicant_inquiries_form.first_name }}
+
+    {{ applicant_inquiries_form.last_name.label_tag }}
+    {{ applicant_inquiries_form.last_name }}
+
+    {{ applicant_inquiries_form.email.label_tag }}
+    {{ applicant_inquiries_form.email }}
+
+     {{ applicant_inquiries_form.phone.label_tag }}
+    {{ applicant_inquiries_form.phone }}
+
+    {{ applicant_inquiries_form.interest.label_tag }}
+    {{ applicant_inquiries_form.interest }}
+
+    <div id="other-interest-field" style="display:none;">
+        {{ applicant_inquiries_form.other_interest.label_tag }}
+        {{ applicant_inquiries_form.other_interest }}
+    </div>
+
+    {{ applicant_inquiries_form.message.label_tag }}
+    {{ applicant_inquiries_form.message }}
+
+    <div class="form-actions">
+        <button type="submit" class="btn submit">Submit</button>
+        <a href="{% url 'careers' %}" class="btn cancel">Cancel</a>
+    </div>
+</form>
+  </div>
+  
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const interestSelect = document.getElementById('id_interest');
+    const otherField = document.getElementById('other-interest-field');
+
+    function toggleOtherField() {
+
+        if (interestSelect.value === 'other') {
+            otherField.style.display = 'block';
+        } else {
+            otherField.style.display = 'none';
+
+            // Optional: clear field when hidden
+            const input = otherField.querySelector('input, textarea');
+            if (input) {
+                input.value = '';
+            }
+        }
+    }
+
+    toggleOtherField();
+
+    interestSelect.addEventListener('change', toggleOtherField);
+});
+</script>
+
+
+  <div class="faq-container">
+
+    <button class="faq-toggle">FAQ</button>
+
+    <div class="faq-box">
+
+      <div class="faq-item">
+        <p class="question">What type of positions do you offer?</p>
+
+        <div class="answer">
+          <p>We offer a wide variety of positions, including:</p>
+
+          <ul>
+            <li>Daily positions</li>
+            <li>Temporary positions</li>
+            <li>Permanent positions</li>
+            <li>Records of Employment</li>
+            <li>Full-time and part-time jobs</li>
+            <li>Roles in several sectors (logistics, production, customer service, etc.)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <p class="question">Which industries do you hire for?</p>
+
+        <div class="answer">
+          <p>
+            We always have jobs available in a variety of industries,
+            including general labor, hospitality, manufacturing,
+            warehousing, waste & recycling, events & more!
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <p class="question">How do I apply?</p>
+
+        <div class="answer">
+          <ul>
+            <li>
+              Fill out the contact form here. You will be required
+              to complete a few additional forms later.
+            </li>
+
+            <li>
+              You will need two forms of valid ID
+              (Driver’s License, State ID, Military ID,
+              Passport with Social Security Card or Birth Certificate).
+            </li>
+
+            <li>
+              Some positions require certifications such as
+              OSHA, CDL, Medical Card, or Forklift Certification.
+            </li>
+
+            <li>A resume is required for some positions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // FAQ container toggle
+    const faqToggle = document.querySelector(".faq-toggle");
+    const faqBox = document.querySelector(".faq-box");
+
+    faqBox.style.display = "none";
+
+    faqToggle.addEventListener("click", () => {
+      faqBox.style.display =
+        faqBox.style.display === "block" ? "none" : "block";
+    });
+
+    // Individual question toggle
+    const questions = document.querySelectorAll(".question");
+
+    questions.forEach(question => {
+      question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+
+        answer.style.display =
+          answer.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    // Hide answers initially
+    const answers = document.querySelectorAll(".answer");
+
+    answers.forEach(answer => {
+      answer.style.display = "none";
+    });
+  </script>
+
+</div>
+
+{% endblock %}

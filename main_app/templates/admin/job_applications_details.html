@@ -1,0 +1,42 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="partner-card">
+
+    <h1> New application </h1>
+
+    <p><strong>Name:</strong> {{ job_application.first_name }} {{ job_application.last_name }}</p>
+
+    <p><strong> Position applied for:</strong> {{ job_application.position }}</p>
+
+    <p><strong>Email:</strong> {{ job_application.email }}</p>
+
+    <p><strong> Cover Letter:</strong> {{ job_application.cover_letter }}</p>
+
+    <p><strong>Years of experience:</strong> {{ job_application.years_of_experience }}</p>
+
+    <p><strong> Driver's License:</strong> {{ job_application.drivers_license }}</p>
+
+    <p><strong>Reliable Transportation:</strong>{{ job_application.reliable_transportation }}</p>
+
+    <p><strong> Available start date:</strong> {{ job_application.available_start_date }}</p>
+
+    <p><strong>Accepted terms and conditions:</strong> {{ job_application.terms_and_conditions }}</p>
+
+    <p><strong>Status:</strong> {{ job_application.status }}</p>
+
+    <p><strong>Submitted on:</strong> {{ job_application.created_at }}</p>
+
+
+    <a href="{% url 'job-applications' %}">← Back to Job Applications</a>
+
+</div>
+
+{% endblock %}

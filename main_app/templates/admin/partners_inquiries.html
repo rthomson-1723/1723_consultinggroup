@@ -1,0 +1,282 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %}
+
+{% block head %}
+<title>Partner Inquiries</title>
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<h2>Partner Inquiries</h2>
+
+<form method="GET" action="">
+    <div class="search-fields">
+
+        <!-- Keyword -->
+        <input
+            type="text"
+            name="keyword"
+            value="{{ keyword }}"
+            placeholder="Company, name, or keyword"
+        >
+
+        <!-- Location -->
+        <input
+            type="text"
+            name="location"
+            value="{{ location }}"
+            placeholder="Location"
+        >
+
+        <!-- Inquiry Date -->
+        <select name="date_range">
+            <option value="">Any time</option>
+
+            <option value="7"
+                {% if date_range == "7" %}selected{% endif %}>
+                Past 7 days
+            </option>
+
+            <option value="30"
+                {% if date_range == "30" %}selected{% endif %}>
+                Past 30 days
+            </option>
+        </select>
+
+        <!-- Service -->
+        <select name="service">
+            <option value="">All services</option>
+
+            <option value="Training"
+                {% if service == "Training" %}selected{% endif %}>
+                Training
+            </option>
+
+            <option value="Staffing"
+                {% if service == "Staffing" %}selected{% endif %}>
+                Staffing
+            </option>
+
+            <option value="Consulting"
+                {% if service == "Consulting" %}selected{% endif %}>
+                Consulting
+            </option>
+        </select>
+
+        <!-- Skills Needed -->
+        <select name="skills">
+            <option value="">All skills</option>
+
+            <option value="General"
+                {% if skills == "General" %}selected{% endif %}>
+                General Labor
+            </option>
+
+            <option value="Skilled"
+                {% if skills == "Skilled" %}selected{% endif %}>
+                Skilled Labor
+            </option>
+        </select>
+
+        <button type="submit">Search</button>
+
+    </div>
+
+    <!-- Active filters -->
+    {% if keyword or location or date_range or service or skills %}
+
+        <div class="searched-words">
+
+            <span class="searched-label">Filtered by:</span>
+
+            {% if keyword %}
+                <span class="search-tag">
+                    {{ keyword }}
+
+                    <a
+                        href="?location={{ location|urlencode }}{% if date_range %}&date_range={{ date_range }}{% endif %}{% if service %}&service={{ service }}{% endif %}{% if skills %}&skills={{ skills }}{% endif %}"
+                        class="clear-search"
+                        title="Remove keyword"
+                    >×</a>
+                </span>
+            {% endif %}
+
+
+            {% if location %}
+                <span class="search-tag">
+                    {{ location }}
+
+                    <a
+                        href="?keyword={{ keyword|urlencode }}{% if date_range %}&date_range={{ date_range }}{% endif %}{% if service %}&service={{ service }}{% endif %}{% if skills %}&skills={{ skills }}{% endif %}"
+                        class="clear-search"
+                        title="Remove location"
+                    >×</a>
+                </span>
+            {% endif %}
+
+
+            {% if date_range %}
+                <span class="search-tag">
+
+                    {% if date_range == "7" %}
+                        Past 7 days
+                    {% elif date_range == "30" %}
+                        Past 30 days
+                    {% endif %}
+
+                    <a
+                        href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}{% if service %}&service={{ service }}{% endif %}{% if skills %}&skills={{ skills }}{% endif %}"
+                        class="clear-search"
+                        title="Remove date filter"
+                    >×</a>
+
+                </span>
+            {% endif %}
+
+
+            {% if service %}
+                <span class="search-tag">
+
+                    {{ service }}
+
+                    <a
+                        href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}{% if date_range %}&date_range={{ date_range }}{% endif %}{% if skills %}&skills={{ skills }}{% endif %}"
+                        class="clear-search"
+                        title="Remove service filter"
+                    >×</a>
+
+                </span>
+            {% endif %}
+
+
+            {% if skills %}
+                <span class="search-tag">
+
+                    {% if skills == "General" %}
+                        General Labor
+                    {% elif skills == "Skilled" %}
+                        Skilled Labor
+                    {% endif %}
+
+                    <a
+                        href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}{% if date_range %}&date_range={{ date_range }}{% endif %}{% if service %}&service={{ service }}{% endif %}"
+                        class="clear-search"
+                        title="Remove skills filter"
+                    >×</a>
+
+                </span>
+            {% endif %}
+
+
+            <a href="?" class="clear-all">
+                Clear all
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</form>
+
+
+<!-- Results -->
+
+{% for partner in partners_applications %}
+    <a
+        href="{% url 'partner_detail' partner.pk %}"
+        class="partner-cards"
+    >
+
+        <h3>
+            {{ partner.company_name }}
+        </h3>
+
+        <p>
+            <strong>Service Needed:</strong>
+            {{ partner.get_service_display }}
+        </p>
+
+        <p>
+            <strong>Skills Needed:</strong>
+            {{ partner.get_skills_needed_display }}
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            {{ partner.job_location|truncatewords:20 }}
+        </p>
+
+        <p>
+            <strong>Submitted:</strong>
+            {{ partner.created_at|localtime|date:"M d, Y g:i A" }}
+        </p>
+
+    </a>
+
+    <hr>
+
+{% empty %}
+
+    <p>No partner inquiries found.</p>
+
+{% endfor %}
+
+
+<!-- Partner pagination -->
+
+{% if partners_applications.has_other_pages %}
+
+    <div class="pagination">
+
+        {% if partners_applications.has_previous %}
+            <a href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}&date_range={{ date_range }}&service={{ service }}&skills={{ skills }}&partners_page={{ partners_applications.previous_page_number }}">
+                Previous
+            </a>
+        {% endif %}
+
+
+        {% for page_num in partners_applications.paginator.get_elided_page_range %}
+
+            {% if page_num == partners_applications.paginator.ELLIPSIS %}
+
+                <span class="pagination-ellipsis">
+                    ...
+                </span>
+
+            {% elif page_num == partners_applications.number %}
+
+                <span class="pagination-current">
+                    <a href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}&date_range={{ date_range }}&service={{ service }}&skills={{ skills }}&partners_page={{ page_num }}">
+                        {{ page_num }}
+                    </a>
+                </span>
+
+            {% else %}
+
+                <a href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}&date_range={{ date_range }}&service={{ service }}&skills={{ skills }}&partners_page={{ page_num }}">
+                    {{ page_num }}
+                </a>
+
+            {% endif %}
+
+        {% endfor %}
+
+
+        {% if partners_applications.has_next %}
+            <a href="?keyword={{ keyword|urlencode }}&location={{ location|urlencode }}&date_range={{ date_range }}&service={{ service }}&skills={{ skills }}&partners_page={{ partners_applications.next_page_number }}">
+                Next
+            </a>
+        {% endif %}
+
+    </div>
+
+{% endif %}
+
+
+<a href="{% url 'dashboard' %}" class="btn cancel">
+    Cancel
+</a>
+
+{% endblock %}

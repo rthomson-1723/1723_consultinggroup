@@ -1,0 +1,23 @@
+{% load static %}
+{% block head %}
+<title>1723 Consulting Group</title>
+<link rel="stylesheet" href="{% static 'css/box.css' %}" />
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="form-box">
+    <section>
+      <form action="{% url 'login' %}" method="post" class="form-container">
+        <div class="profile-logo-container">
+          <a href="{% url 'home' %}"><img src="{% static 'images/about_us.JPG' %}" alt="1723 Consulting Group Logo" /> </a>
+        </div>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="btn submit">Login</button>
+        <a href="{% url 'forgot_password' %}">Forgot Password</a>
+      </form>
+    </section>
+  </div>
+{% endblock %}

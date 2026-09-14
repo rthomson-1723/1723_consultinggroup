@@ -1,0 +1,158 @@
+ main{
+    background-image: url("../images/partners.png");
+    background-repeat: no-repeat;
+    background-size: cover;       /* fills the screen */
+    background-position: center;  /* centers the image */
+    font-size: large;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    gap: 10px;
+}
+
+.form-box h1{
+    color:black;
+    font-size: 55px;
+    font-weight: bold;
+    background-color: #ffffff;
+    padding: 0.67%;
+    border-radius: 12px;
+    
+
+}
+
+/* Floating FAQ Button */
+.faq-container {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    z-index: 3000;
+
+}
+
+/* Button */
+.faq-toggle {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 20px 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.faq-box {
+    display: none;
+    width: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Questions */
+.question {
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px 0;
+    color: #0077cc;
+}
+
+/* Answers */
+.answer {
+    display: none;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Show FAQ popup */
+.faq-box.show {
+    display: block;
+}
+
+/* Show answers */
+.answer.show-answer {
+    display: block;
+}
+
+:root {
+    --footer-height: 60px;
+}
+footer {
+    height: var(--footer-height);
+}
+
+.form-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+    margin-bottom: 20px;
+    flex-direction: column;  
+    gap: 20px;
+   
+}
+
+.form-container {
+    background: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(10px);           /* glass effect (optional) */
+    -webkit-backdrop-filter: blur(10px); 
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+.form-container p {
+    margin-bottom: 20px;
+}
+
+
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #222;
+}
+
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.btn {
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    color:black
+}
+
+.submit {
+    background-color: white
+}
+
+.cancel {
+    background-color: #dc3545;
+}

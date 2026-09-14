@@ -1,0 +1,85 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block head %}
+<title>1723 Consulting group</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="services-container">
+    <div class="consulting_box">    
+        <ul>
+            <h3>Consulting Services</h3>
+            <li>Team Reset & Culture Rebuild</li>
+            <li>Strategic Planning & Execution</li>
+            <li>Leadership Coaching & Advising</li>
+            <li>Operational & Process Review</li>
+            <li>Change Management</li>
+            <li>Performance Optimization</li>
+        </ul>
+        <img src="{% static 'images/culture.png' %}" alt="Culture" />
+    </div>
+
+    <div class="staffing_box">
+        <img src="{% static 'images/staffing.png' %}" alt="Culture" />
+        <ul>
+            <h3>Staffing Services</h3>
+            <li>Orientation of all employees on company policies and procedures.</li>
+            <li>Ensuring compliance with labor laws and regulations.</li>
+            <li>Managing employee records and documentation.</li>
+            <li>Gathering and reporting of all state and federal payroll data.</li>
+            <li>Processing payroll and ensuring accurate and timely payment to employees.</li>
+            <li>Compile, file, and distribute W-2 forms to employees.</li>
+            <li>Interviewing</li>
+            <li>Background Checks</li>
+            <li>Recruitment</li>
+            <li>Onboarding</li>
+            <li>Talent Acquisition</li>
+        </ul>
+    </div>
+
+    <div class="sector_box">
+        <h3>Sector Serviced:</h3>
+        <ul class="all_services">
+
+            <div class="individual_sector">
+                <p><strong>Customer Service</strong></p>
+                <img src="{% static 'images/customer.jpg' %}" />
+            </div>
+
+             <div class="individual_sector">
+                <p><strong>Corporate Consulting Services</strong></p>
+                <img src="{% static 'images/business_consulting.png' %}" />
+            </div>
+
+
+            <div class="individual_sector">
+                <p><strong>Warehouses & Logistics</strong></p>
+                <img src="{% static 'images/warehouses.png' %}" />
+            </div>
+
+
+            <div class="individual_sector">
+                <p><strong>Hospitality</strong></p>
+                <img src="{% static 'images/hospitality.png' %}" />
+            </div>
+
+        </ul>
+    </div>
+
+     <div class="cta-section">
+        <h2>Ready to Transform Your Organization?</h2>
+        <p>Partner with us to build stronger leaders and better teams.</p>
+        <button class="primary-btn" onclick="window.location.href='{% url 'employers' %}'">
+            Partner with us
+        </button>
+
+        <button class="primary-btn" onclick="window.location.href='{% url 'careers' %}'">
+        Find a Job
+        </button>
+    </div>
+
+</div>
+{% endblock %}

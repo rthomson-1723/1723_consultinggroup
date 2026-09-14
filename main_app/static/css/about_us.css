@@ -1,0 +1,194 @@
+.welcome_section,
+.industries-section,
+.process-section,
+.faq-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.welcome_section,
+.industries-section {
+    background-color: rgb(4, 4, 98);
+    color: white;
+    font-size: 25px;
+}
+
+.welcome_content {
+    flex: 1;
+    min-width: 300px;
+    font-size: 20px;
+}
+
+.welcome_content h2,
+.welcome_content p {
+    margin: 20px;
+}
+
+.welcome_section img,
+.faq-image img {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+}
+
+.industries-section img {
+    margin-right: 200px;
+    height: 100%;
+}
+
+.industries-section li {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.process-section {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 40px;
+}
+
+.process-section img,
+.industries-section img{
+    width: 60%;
+    max-width: 550px;
+    border-radius: 10px;
+    margin-left: 50px;
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.step {
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.step:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    background-color: lemonchiffon;
+}
+
+
+.faq-section {
+    margin-top: 6%;
+    gap: 40px;
+}
+
+.faq {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.faq-answer {
+    font-size: 20px;
+}
+
+.faq-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.faq-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.faq-image img {
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+/* =========================
+   CTA SECTION
+   ========================= */
+
+.cta-section {
+    text-align: center;
+}
+
+.primary-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.primary-btn:hover {
+    background: #333;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .welcome_section,
+    .industries-section,
+    .process-section,
+    .faq-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .welcome_content,
+    .faq-content {
+        min-width: 100%;
+    }
+
+    .welcome_section img,
+    .industries-section img,
+    .process-section img,
+    .faq-image img {
+        width: 100%;
+        max-width: 100%;
+        margin: 20px auto;
+    }
+
+    .process-section img {
+        margin-right: 0;
+    }
+
+    .process-steps {
+        max-width: 100%;
+    }
+
+    .faq-question {
+        font-size: 22px;
+    }
+
+    .faq-answer,
+    .welcome_content,
+    .process-section,
+    .industries-section li {
+        font-size: 18px;
+    }
+}

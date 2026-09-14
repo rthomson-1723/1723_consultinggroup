@@ -1,0 +1,197 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/job-application.css' %}" /> {% endblock %}
+{% block content %}
+
+<div class="form-box">
+<h1>Apply Now</h1>
+
+<form method="post"
+      class="form-container"
+      enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ job_application_form.non_field_errors }}
+
+
+    <!-- Normal form fields -->
+    {% for field in job_application_form %}
+
+        {% if field.name != "terms_and_conditions" %}
+
+            <div class="form-field">
+
+                {{ field.label_tag }}
+
+                {{ field }}
+
+                {% if field.help_text %}
+                    <small class="help-text">
+                        {{ field.help_text }}
+                    </small>
+                {% endif %}
+
+                {% if field.errors %}
+                    <div class="field-errors">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+    <!-- Terms & Conditions -->
+    <div class="terms-field">
+
+        {% if job_application_form.terms_and_conditions.errors %}
+            <div class="field-errors">
+                {{ job_application_form.terms_and_conditions.errors }}
+            </div>
+        {% endif %}
+
+        <label class="terms-label">
+
+            {{ job_application_form.terms_and_conditions }}
+
+            <span>
+                I agree to
+
+                <button type="button"
+                        class="terms-link"
+                        onclick="openTerms()">
+                    the Terms and Conditions
+                </button>
+
+            </span>
+
+        </label>
+
+    </div>
+
+
+    <!-- Form buttons -->
+    <div class="form-actions">
+
+        <button type="submit" class="btn submit">
+            Submit
+        </button>
+
+        <a href="{% url 'job_board' %}"
+           class="btn cancel">
+            Cancel
+        </a>
+
+    </div>
+
+</form>
+<div id="termsModal" class="terms-modal" aria-hidden="true">
+  <div class="terms-modal-content"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="termsModalTitle">
+
+    <!-- Close button -->
+    <button type="button"
+            class="close-terms"
+            onclick="closeTerms()"
+            aria-label="Close">
+        &times;
+    </button>
+
+
+    <!-- Terms title from Django -->
+    {% if terms %}
+
+        <h2 id="termsModalTitle">
+            {{ terms.title }}
+        </h2>
+
+
+        <!-- Terms content from Django -->
+        <div class="terms-content">
+
+            {{ terms.content|linebreaks }}
+
+        </div>
+
+    {% else %}
+
+        <h2 id="termsModalTitle">
+            Terms and Conditions
+        </h2>
+
+        <p>
+            Terms and Conditions are currently unavailable.
+        </p>
+
+    {% endif %}
+
+
+    <!-- Modal buttons -->
+    <div class="terms-actions">
+
+        <button type="button"
+                class="btn cancel"
+                onclick="closeTerms()">
+            Cancel
+        </button>
+
+        <button type="button"
+                class="btn submit"
+                onclick="agreeToTerms()">
+            I Agree
+        </button>
+
+    </div>
+
+</div>
+
+</div> 
+<script>
+  function openTerms() { const modal = document.getElementById("termsModal"); if (modal) { modal.style.display = "flex"; modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden"; } }
+  function closeTerms() { const modal = document.getElementById("termsModal"); if (modal) { modal.style.display = "none"; modal.setAttribute("aria-hidden", "true"); 
+  document.body.style.overflow = ""; } } 
+  function agreeToTerms() { const checkbox = document.getElementById( "{{ job_application_form.terms_and_conditions.id_for_label }}" ); 
+    if (checkbox) { checkbox.checked = true; } closeTerms(); } 
+   document.addEventListener("click", function(event) { const modal = document.getElementById("termsModal"); if (event.target === modal) { closeTerms(); } }); 
+   document.addEventListener("keydown", function(event) { if (event.key === "Escape") { const modal = document.getElementById("termsModal"); if (modal && modal.style.display === "flex") { closeTerms(); } } }); 
+</script> 
+
+<style> 
+  .terms-field { margin: 25px 0; } 
+  .terms-label { display: flex; align-items: center; gap: 8px; } 
+  .terms-label input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+  /* Clickable Terms link */ 
+  .terms-link { border: none; background: none; color: #007bff; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; } 
+   
+  .terms-link:hover { color: #0056b3; } /* Modal background */
+  .terms-modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.65); align-items: center; justify-content: center; padding: 20px; } 
+  /* Modal box */ 
+  .terms-modal-content { position: relative; width: 100%; max-width: 700px; max-height: 85vh; background: white; border-radius: 12px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; } 
+  /* Title */ 
+  .terms-modal-content h2 { margin-top: 0; margin-right: 40px; }
+   /* Scrollable terms */ 
+  .terms-content { overflow-y: auto; max-height: 55vh; padding-right: 15px; line-height: 1.7; color: #444; } 
+   /* Close X */ 
+  .close-terms { position: absolute; top: 10px; right: 15px; border: none; background: transparent; font-size: 30px; cursor: pointer; color: #555; } .close-terms:hover { color: #000; } 
+   /* Modal buttons */ 
+  .terms-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; } 
+   /* Mobile */
+  @media (max-width: 600px) { .terms-modal { padding: 10px; } .terms-modal-content { max-height: 90vh; padding: 20px; } 
+   .terms-content { max-height: 60vh; } 
+  .terms-actions { flex-direction: column; } 
+    
+  .terms-actions button { width: 100%; } } 
+  </style>
+
+  
+{% endblock %}

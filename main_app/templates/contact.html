@@ -1,0 +1,40 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block head %}
+<title>1723 Consulting Group</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/homess.css'%}"/>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-box">
+    
+    <button class="primary-btn" onclick="window.location.href='{% url 'employers' %}'">
+        Become a Partner
+    </button>
+    <button class="primary-btn" onclick="window.location.href='{% url 'careers' %}'">
+        Find a Job
+    </button>
+</div>
+
+
+<!-- CTA SECTION -->
+    <div class="cta-section">
+
+        <h2>Ready to Transform Your Organization?</h2>
+
+        <p>Partner with us to build stronger leaders and better teams.</p>
+
+        <button class="primary-btn"
+                onclick="window.location.href='{% url 'employers' %}'">
+            Become a partner
+        </button>
+
+        <button class="primary-btn" onclick="window.location.href='{% url 'careers' %}'">
+        Find a Job
+        </button>
+
+    </div>
+
+{% endblock %}

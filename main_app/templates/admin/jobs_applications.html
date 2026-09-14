@@ -1,0 +1,75 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %} 
+
+{% block head %}
+<title>Dashboard</title>
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+<h2> Job Applications </h2>
+{% for job_application in jobs_applications %}
+    <a href="{% url 'job_application_detail' job_application.pk %}"class="partner-cards">
+            <p><strong> Name:</strong> {{ job_application.first_name }} {{ job_application.last_name }}</p>
+            <p><strong> Position applied for:</strong> {{job_application.position }}</p>
+            <p><strong>Status:</strong> {{job_application.status }}</p>
+    </a>
+    <hr>
+{% empty %}
+    <p>No partners found.</p>
+{% endfor %}
+
+<!-- Partner pagination -->
+{% if jobs_applications.has_other_pages %}
+
+    <div class="pagination">
+
+        {% if jobs_applications.has_previous %}
+            <a href="?job_applications_page={{ jobs_applications.previous_page_number }}">
+                Previous
+            </a>
+        {% endif %}
+
+
+        {% for page_num in jobs_applications.paginator.get_elided_page_range %}
+            
+            {% if page_num == jobs_applications.paginator.ELLIPSIS %}
+
+                <span class="pagination-ellipsis">...</span>
+
+            {% elif page_num == jobs_applications.number %}
+
+                <span class="pagination-current">
+                    <a href="?job_applications_page={{ page_num }}">
+                        {{ page_num }}
+                    </a>
+
+                </span>
+
+            {% else %}
+
+                <a href="?job_applications_page={{ page_num }}">
+                    {{ page_num }}
+                </a>
+
+            {% endif %}
+
+        {% endfor %}
+
+
+        {% if jobs_applications.has_next %}
+            <a href="?job_applications_page={{ jobs_applications.next_page_number }}">
+                Next
+            </a>
+        {% endif %}
+
+    </div>
+
+{% endif %}
+
+
+<a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
+
+
+{% endblock %}

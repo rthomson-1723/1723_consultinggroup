@@ -1,0 +1,120 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.jpeg' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>1723 Consulting Group Admin</title>
+{% block head %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <nav class="dashboard-nav">
+            <button class="menu-btn" id="menu-toggle">
+                ☰
+            </button>
+            <div class="head-logo-container">
+                <img src="{% static 'images/about_us.JPG' %}" alt="1723 Consulting Group Logo" />
+            </div>
+
+            <div class="side-menu" id="side-menu">
+
+                <div class="profile-logo-container">
+                    <a href="{% url 'profile' %}">
+                        <img src="{% static 'images/profile.png' %}" alt="1723 Consulting Group Logo" />  
+                    </a>
+                </div>
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'partners' %}">
+                    Partner Inquiries
+                </a>
+
+                <a href="{% url 'applicants' %}">
+                    Applicant Inquiries
+                </a>
+
+                <a href="{% url 'job-applications' %}">
+                    Job Applications
+                </a>
+
+                <a href="{% url 'add-jobs' %}">
+                    Add Jobs
+                </a>
+
+                <a href="{% url 'job_listing' %}">
+                    Job listing
+                </a>
+
+
+               <a href="{% url 'home' %}"
+                target="_blank"
+                rel="noopener noreferrer"> Main Website
+               </a>
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">
+                        Log Out
+                    </button>
+                </form>
+
+            </div>
+
+            <div class="menu-overlay" id="menu-overlay"></div>
+
+        </nav>
+    </header>
+
+    <div class="page-content">
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const menuBtn = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const body = document.body;
+
+        // Restore menu state
+        if (localStorage.getItem('adminMenuOpen') === 'true') {
+            sideMenu.classList.add('open');
+            overlay.classList.add('show');
+            body.classList.add('menu-open');
+        }
+
+        function toggleMenu() {
+            const isOpen = sideMenu.classList.toggle('open');
+
+            overlay.classList.toggle('show', isOpen);
+            body.classList.toggle('menu-open', isOpen);
+
+            // Remember state
+            localStorage.setItem('adminMenuOpen', isOpen);
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+    });
+
+</script>
+
+</body>
+</html>
+

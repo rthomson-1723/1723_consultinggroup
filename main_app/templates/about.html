@@ -1,0 +1,139 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block head %}
+<title>1723 Consulting group</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/about_us.css'%}"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="about-container">
+    <div class="welcome_section">
+        <div class="welcome_content">
+            <h2>Who We Are</h2>
+            <p>
+                1723 Consulting Group is a leadership consulting and staffing firm dedicated to helping businesses
+                navigate change, strengthen leadership, and build high-performing teams. We partner with organizations
+                across industries to deliver tailored solutions that drive measurable results.
+            </p>
+        </div>
+
+        <img src="{% static 'images/about_us.JPG' %}" alt="Culture" />
+
+    </div>
+
+  
+    <div class="process-section">
+        <img src="{% static 'images/strategy.png' %}" alt="Culture" />
+        <div class="process-steps">
+
+            <h2>Our Approach</h2>
+
+            <div class="step">
+                <h4>Discover</h4>
+                <p>We assess your organization’s challenges, goals, and current state.</p>
+            </div>
+
+            <div class="step">
+                <h4>Strategize</h4>
+                <p>We design tailored solutions aligned with your business objectives.</p>
+            </div>
+
+            <div class="step">
+                <h4>Execute</h4>
+                <p>We implement practical strategies with measurable outcomes.</p>
+            </div>
+
+            <div class="step">
+                <h4>Optimize</h4>
+                <p>We refine and scale solutions for long-term success.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+  
+    <div class="industries-section">
+
+        <ul>
+            <h2>Industries We Serve</h2>
+            <li>Technology</li>
+            <li>Finance</li>
+            <li>Retail & E-commerce</li>
+            <li>Manufacturing</li>
+            <li>Hospitality</li>
+        </ul>
+   
+        <img src="{% static 'images/industries.jpg' %}" alt="Culture" />
+    
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="faq-section">
+        
+        
+        <div class="faq-image">
+            <img src="{% static 'images/business_consulting.png' %}" alt="Culture" />
+        </div>
+
+
+        <div class="faq_text">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <h3 class="faq-question">What services do you offer?</h3>
+                <div class="faq-answer">
+                    <p>We provide staffing, consulting, and workforce solutions tailored to employers and job seekers.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3 class="faq-question">How can I apply for jobs?</h3>
+                <div class="faq-answer">
+                    <p>You can browse our job board and apply directly through our website.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3 class="faq-question">How do employers partner with you?</h3>
+                <div class="faq-answer">
+                    <p>Employers can contact us directly to discuss hiring needs and partnership opportunities.</p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <h3 class="faq-question">How can I contact you?</h3>
+                <div class="faq-answer">
+                    <p>Email us at info@1723consultinggroup.com or use the contact section below.</p>
+                </div>
+            </div>
+         
+        
+        </div>  
+
+    </div>
+
+    <!-- CTA SECTION -->
+    <div class="cta-section">
+
+        <h2>Ready to Transform Your Organization?</h2>
+
+        <p>Partner with us to build stronger leaders and better teams.</p>
+
+        <button class="primary-btn"
+                onclick="window.location.href='{% url 'employers' %}'">
+            Become a partner
+        </button>
+
+        <button class="primary-btn" onclick="window.location.href='{% url 'careers' %}'">
+        Find a Job
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}

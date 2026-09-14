@@ -1,0 +1,24 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% block head %}
+<title>Add jobs</title>
+<link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="form-box">
+  <h1>Post a Job</h1>
+
+  <form method="post" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-actions">
+      <button type="submit" class="btn submit">Post Job</button>
+      <a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

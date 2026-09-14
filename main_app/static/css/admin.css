@@ -1,0 +1,117 @@
+body {
+    margin-top: 90px;
+    transition: transform 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.dashboard-nav {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background: white;
+    top: 0;
+    z-index: 600;
+    margin: 0;
+   
+}
+
+/* HAMBURGER */
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: black;
+    z-index: 500;
+    margin-bottom: 10px;
+}
+
+/* SIDEBAR */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 60px 10px 10px;
+    z-index: 450;
+}
+
+/* OPEN STATE */
+.side-menu.open {
+    left: 0;
+}
+
+/* PUSH BODY */
+.page-content {
+    transition: transform 0.3s ease;
+    padding: 15px 15px;
+}
+
+body.menu-open .page-content {
+    transform: translateX(280px);
+}
+/* MENU LINKS */
+.side-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 8px;
+    z-index: 500;
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.side-menu a:hover {
+    color: #007BFF;
+}
+
+/* GREETING */
+.side-menu h2 {
+    margin-bottom: 15px;
+    padding: 10px 10px;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.head-logo-container img {
+    width: 150px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+
+.profile-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-logo-container img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.login-logo-container img {
+    margin-top: 30px;
+    width: 150px;
+    height: 150px;
+    border-radius: 60%;
+    object-fit: cover;
+}

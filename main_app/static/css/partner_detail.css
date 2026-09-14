@@ -1,0 +1,39 @@
+.partner-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    transition: .2s;
+   
+
+}
+.partner-cards {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    transition: .2s;
+   
+
+}
+
+.partner-cards:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    background-color: aqua;
+  
+}
+
+.partner-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  
+}

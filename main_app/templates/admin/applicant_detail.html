@@ -1,0 +1,32 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="partner-card">
+
+    <h1> New Inquiry</h1>
+
+    <p><strong>Name:</strong> {{ applicant.first_name }} {{ applicant.last_name }}</p>
+
+    <p><strong>Email:</strong> {{ applicant.email }}</p>
+
+    <p><strong>Phone:</strong> {{ applicant.phone }}</p>
+
+    <p><strong>Interest:</strong> {{ applicant.interest }}</p>
+
+    <p><strong>Description:</strong></p>
+    <p>{{ applicant.message }}</p>
+
+   
+
+    <a href="{% url 'applicants' %}">← Back to General Inquiries</a>
+
+</div>
+
+{% endblock %}

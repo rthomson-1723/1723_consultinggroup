@@ -1,0 +1,113 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %}
+
+{% block head %}
+<title>Dashboard</title>
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+<link rel="stylesheet" href="{% static 'css/dashboard-admin.css' %}" />
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="welcome-container">
+        <h1>Dashboard</h1>
+        <h2> Welcome back {{ user.first_name|default:"Pookie" }}!</h2>
+        <p>Today: {% now "F j, Y" %}</p>
+    </div>
+
+    <div class="middle-container">
+        <div class ="first-box">
+            <div class="summary">
+                <p>This week summary</p>
+                <ul>
+                    <li>Total Partner Inquiries: {{ weekly_partner_inquiries.count }}</li>
+                    <li>Total General Applications Inquiries: {{ weekly_general_inquiries.count }}</li>
+                    <li>Total Job applications: {{ weekly_job_applications.count }}</li>
+            </div>
+        </div>
+
+        <div class="second-box">
+            <div class="calendar-section">
+                <h2>Company Calendar</h2>
+                <iframe
+                    src="https://outlook.office365.com/owa/calendar/a9b86cba48814e42b9a6ccc88b96c06a@1723consultinggroup.com/bae87b945ea747edac7446425261704611820184328047891206/calendar.html"
+                    width="100%"
+                    height="600"
+                    frameborder="0">
+                </iframe>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="most-recent-container">
+        <div class ="most-recent-partner-inquiries">
+            <h2>Partner inquiries</h2>
+            {% for partner in new_partners_applications %}
+                    <h4> Business Name: {{ partner.company_name }}</h4>
+                    <p>Needs: {{ partner.description|truncatewords:12 }}</p>
+                    <small>Submitted on: {{ partner.created_at|date:"M d, Y" }}</small>
+                </a>
+            {% empty %}
+                <p>No new partner inquiries in the last 30 days.</p>
+            {% endfor %}
+        </div>
+
+        <div class ="most-recent-partner-inquiries">
+            <h2>Applicant's inquiries</h2>
+            {% for applicant in new_general_applications %}
+                    <h4>Applicant's name: {{ applicant.first_name }} {{ applicant.last_name }}</h4>
+                    <p>Interest: {{ applicant.interest|truncatewords:12 }}</p>
+                    <small>Submitted on: {{ applicant.created_at|date:"M d, Y" }}</small>
+                </a>
+            {% empty %}
+                <p>No new general inquiries in the last 30 days.</p>
+            {% endfor %}
+        </div>
+
+        <div class ="most-recent-partner-inquiries">
+            <h2>Job applications</h2>
+            {% for job in new_job_applications %}
+                    <h4>Applicant's name: {{ job.first_name }} {{ job.last_name }}</h4>
+                    <p>Position applied for: {{ job.position|truncatewords:12 }}</p>
+                    <small>Submitted on:{{ job.created_at|date:"M d, Y" }}</small>
+                </a>
+            {% empty %}
+                <p>No new job applications in the last 30 days.</p>
+            {% endfor %}
+        </div>
+    <div>
+</body>
+{% endblock %}
+
+<footer>
+        <div class="header-logo-container">
+            <img src="{% static 'images/logo.jpeg' %}" alt="1723 Consulting Group Logo" />
+        </div>
+
+        <div class="middle_items">
+            <p>&copy; 2026 1723 Consulting Group. All rights reserved-</p>
+            <a href="{% url 'login' %}">Admin</a>
+        </div>
+
+        <div class="social-icons">
+            <h4>Contact us:</h4>
+
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+                <img src="{% static 'images/facebook_logo.png' %}" alt="Facebook">
+            </a>
+
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+                <img src="{% static 'images/linkedin.webp' %}" alt="LinkedIn">
+            </a>
+
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+                <img src="{% static 'images/Instagram-logo.png' %}" alt="Instagram">
+            </a>
+
+            <a href="mailto:info@1723consultinggroup.com">
+                <button>info@1723consultinggroup.com</button>
+            </a>
+        </div>
+</footer>

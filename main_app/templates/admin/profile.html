@@ -1,0 +1,24 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="profile-box">
+    <h2>Profile</h2>
+
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Password:</strong> *******</p>
+
+    {% if user%}
+        <a href="{% url 'edit-profile' %}" class="btn secondary">Update</a>
+        <a href="{% url 'dashboard' %}" class="btn secondary">Cancel</a>
+
+    {% else %}
+        <p>Update your profile for more accurate results, bestie:</p>
+        <a href="{% url 'edit-profile' %}" class="btn secondary">Add Profile</a>
+    {% endif %}
+</div>
+{% endblock %}

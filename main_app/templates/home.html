@@ -1,0 +1,78 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block head %}
+<title>1723 Consulting Group</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/homess.css'%}"/>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-box">
+    
+    <button class="primary-btn" onclick="window.location.href='{% url 'employers' %}'">
+        Become a partner
+    </button>
+    <button class="primary-btn" onclick="window.location.href='{% url 'careers' %}'">
+        Find a job
+    </button>
+</div>
+
+<div class="about-section">
+    <h1>Building Strong Leaders - Powering Great Teams</h1>
+    
+    <p>
+       Whether you are looking to enhance your team's performance,seeking strategic consulting services or looking for talent acquisition solutions, 1723 Consulting group is an influential strategic consulting & talent agency specializing in operational
+        excellence and transformative human services solutions. With over 15 years of
+        experience in Health & Human Services, we are committed to delivering exceptional
+        service by fostering a high-performance culture, developing top talent, and empowering
+        teams to achieve customer success. We help organizations strengthen performance,
+        rebuild culture, and execute strategy with measurable impact.
+    </p>
+</div>
+
+<div class="process-section">
+    
+    <div class="process-content">
+        <h2>Why partner with us?</h2>
+
+        <div class="process-steps">
+            <div class="step">
+                <h4>Reliability</h4>
+                <p>Our qualified candidates are thoroughly screened and proven dependable.</p>
+            </div>
+
+            <div class="step">
+                <h4>Speed</h4>
+                <p>Rapid workforce deployment at record speed</p>
+            </div>
+
+            <div class="step">
+                <h4>Flexibility</h4>
+                <p>Swift-response teams ready when you need them.</p>
+            </div>
+
+            <div class="step">
+                <h4>Optimization</h4>
+                <p>We refine and scale solutions for long-term success.</p>
+            </div>
+        </div>
+    </div>
+
+    <img src="{% static 'images/motto.jpeg' %}" alt="About Us" />
+</div>
+
+<div class="cta-section">
+    <h2>Ready to Transform Your Organization?</h2>
+    <p>Partner with us to build stronger leaders and better teams.</p>
+    <button class="primary-btn" onclick="window.location.href='{% url 'employers' %}'">
+        Partner with us
+    </button>
+    <button class="primary-btn" onclick="window.location.href='{% url 'careers' %}'">
+        Find a Job
+    </button>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,191 @@
+/* MAIN PAGE */
+body {
+    width: 100%;
+    min-height: 100%;
+    background-color: #f4f6f9;
+    gap:20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: space-between;
+}
+
+/* =========================
+   WELCOME CONTAINER
+========================= */
+.welcome-container {
+    width: 100%;
+    min-height: 220px;
+    background:cornflowerblue;
+    color:white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Left side */
+.welcome-container h1,
+.welcome-container h2 {
+    margin: 0;
+}
+
+.welcome-container h1 {
+    font-size: 3rem;
+    color:white;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+
+.welcome-container h2 {
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 500;
+}
+
+/* Wrap title + greeting together */
+.welcome-container::before {
+    content: "";
+}
+
+/* DATE ON RIGHT SIDE */
+.welcome-container p {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+    align-self: flex-end;
+}
+
+/* =========================
+   MIDDLE CONTAINER
+========================= */
+.middle-container {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: row;
+    margin-top: 25px;
+}
+
+/* FIRST BOX */
+.first-box {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.first-box ul{
+    margin-top: 10px;
+}
+
+/* SUMMARY */
+.summary {
+    background: #f9fafb;
+    border-radius: 8px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary p {
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* GRAPH */
+.graph {
+    flex: 1;
+    min-height: 350px;
+    border-radius: 8px;
+    background: #eef2ff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* SECOND BOX */
+.second-box {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-section h2 {
+    margin-top: 10px;
+    
+}
+
+
+
+.calendar-section iframe {
+    width: 1200px;
+    border-radius: 12px;
+    border: none;
+    display: block;
+}
+
+/* =========================
+   MOST RECENT CONTAINER
+========================= */
+.most-recent-container {
+    margin-top: 25px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* GRID ITEMS */
+.most-recent-partner-inquiries {
+    background: white;
+    border-radius: 8px;
+    min-height: 250px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.most-recent-partner-inquiries h2 {
+    margin-top: 10px;
+    color: #111827;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    margin-top: 40px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 900px) {
+
+    .middle-container {
+        flex-direction: column;
+    }
+
+    .most-recent-container {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .welcome-container p {
+        position: static;
+    }
+}

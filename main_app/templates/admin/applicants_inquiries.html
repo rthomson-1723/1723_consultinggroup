@@ -1,0 +1,77 @@
+{% extends "admin/admin_nav.html" %}
+{% load static %}
+{% load tz %} 
+
+{% block head %}
+<title>Dashboard</title>
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<h2> General Inquiries </h2>
+
+{% for applicant in applicants_applications %}
+    <a href="{% url 'applicant_detail' applicant.pk %} "class="partner-cards">
+        <h3> {{ applicant.first_name }} {{ applicant.last_name }}</h3>
+        <p><strong>Interest:</strong>{{ applicant.interest}}</p>
+         <p><strong>Description:</strong>{{ applicant.message}}</p>
+    </a>
+    <hr>
+{% empty %}
+    <p>No general inquiries found.</p>
+{% endfor %}
+
+<!-- Partner pagination -->
+{% if applicants_applications.has_other_pages %}
+
+    <div class="pagination">
+
+        {% if applicants_applications.has_previous %}
+            <a href="?applicants_page={{ applicants_applications.previous_page_number }}">
+                Previous
+            </a>
+        {% endif %}
+
+
+        {% for page_num in applicants_applications.paginator.get_elided_page_range %}
+            
+            {% if page_num == applicants_applications.paginator.ELLIPSIS %}
+
+                <span class="pagination-ellipsis">...</span>
+
+            {% elif page_num == applicants_applications.number %}
+
+                <span class="pagination-current">
+                    <a href="?applicants_page={{ page_num }}">
+                        {{ page_num }}
+                    </a>
+
+                </span>
+
+            {% else %}
+
+                <a href="?applicants_page={{ page_num }}">
+                    {{ page_num }}
+                </a>
+
+            {% endif %}
+
+        {% endfor %}
+
+
+        {% if applicants_applications.has_next %}
+            <a href="?partners_page={{ applicants_applications.next_page_number }}">
+                Next
+            </a>
+        {% endif %}
+
+    </div>
+
+{% endif %}
+
+
+<a href="{% url 'dashboard' %}" class="btn cancel">Cancel</a>
+
+
+{% endblock %}

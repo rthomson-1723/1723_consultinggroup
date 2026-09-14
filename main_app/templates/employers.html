@@ -1,0 +1,103 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/employer.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<body>
+  <div class="form-box">
+    <h1>Become a Partner</h1>
+
+    <form method="post" class="form-container" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ partner_inquiry_form.as_p }}
+
+      <div class="form-actions">
+        <button type="submit" class="btn submit">Submit</button>
+        <a href="{% url 'employers' %}" class="btn cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="faq-container">
+      <button class="faq-toggle">FAQ</button>
+
+      <div class="faq-box">
+          <div class="faq-item">
+              <p>** Click for answers**</p>
+              <p class="question">What services do you provide?</p>
+              <p class="answer">
+                  We provide workforce staffing, rapid deployment, and operational support solutions.
+              </p>
+          </div>
+
+        <div class="faq-item">
+          <p class="question">Do you handle the payroll for temporary employees?</p>
+
+          <div class="answer">
+              <p>Yes. We take care of:</p>
+
+              <ul>
+                  <li>Payroll</li>
+                  <li>All State and Federal deductions</li>
+                  <li>Vacations/deductions</li>
+                  <li>Records of Employment</li>
+                  <li>End of contract</li>
+              </ul>
+
+              <p>You receive a single invoice — simple and clear.</p>
+        </div>
+  
+
+      <div class="faq-item">
+                <p class="question">How quickly can you deploy workers?</p>
+                <p class="answer">
+                    In many cases, we can deploy qualified workers within 24–48 hours.
+                </p>
+      </div>
+
+      <div class="faq-item">
+          <p class="question">What are your rates?</p>
+
+          <div class="answer">
+
+              <ul>
+                  <li>Temporary: hourly rate + agreed fees</li>
+                  <li>Permanent: percentage of annual salary or fixed amount</li>
+                  <li>HR consulting: hourly rate or package</li>
+      
+              </ul>
+
+              <p>A quick, free, no-obligation quote is provided.</p>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      const faqToggle = document.querySelector(".faq-toggle");
+      const faqBox = document.querySelector(".faq-box");
+
+      faqToggle.addEventListener("click", () => {
+          faqBox.style.display =
+              faqBox.style.display === "block" ? "none" : "block";
+      });
+
+      const questions = document.querySelectorAll(".question");
+
+      questions.forEach(question => {
+          question.addEventListener("click", () => {
+              const answer = question.nextElementSibling;
+
+              answer.style.display =
+                  answer.style.display === "block" ? "none" : "block";
+          });
+      });
+  </script>
+
+</body>
+
+{% endblock %}
