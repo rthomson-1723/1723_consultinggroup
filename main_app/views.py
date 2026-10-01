@@ -234,7 +234,7 @@ def applicant_inquiries(request):
             applicant_inquiry_form.save()
 
             applicant_email = applicant_inquiry_form.cleaned_data.get('email')
-            applicant_name = applicant_inquiry_form.cleaned_data.get('name')
+            applicant_name = applicant_inquiry_form.cleaned_data.get('first_name')
             interest = applicant_inquiry_form.cleaned_data.get('interest')
            
 

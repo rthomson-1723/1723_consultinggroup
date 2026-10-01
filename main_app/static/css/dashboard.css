@@ -11,9 +11,7 @@ body {
     justify-content: space-between;
 }
 
-/* =========================
-   WELCOME CONTAINER
-========================= */
+
 .welcome-container {
     width: 100%;
     min-height: 220px;
@@ -46,12 +44,12 @@ body {
     font-weight: 500;
 }
 
-/* Wrap title + greeting together */
+
 .welcome-container::before {
     content: "";
 }
 
-/* DATE ON RIGHT SIDE */
+
 .welcome-container p {
     font-size: 1.1rem;
     color: white;
@@ -59,9 +57,6 @@ body {
     align-self: flex-end;
 }
 
-/* =========================
-   MIDDLE CONTAINER
-========================= */
 .middle-container {
     width: 100%;
     display: flex;
@@ -70,7 +65,7 @@ body {
     margin-top: 25px;
 }
 
-/* FIRST BOX */
+
 .first-box {
     flex: 1;
     background: white;
@@ -86,7 +81,6 @@ body {
     margin-top: 10px;
 }
 
-/* SUMMARY */
 .summary {
     background: #f9fafb;
     border-radius: 8px;
@@ -101,7 +95,7 @@ body {
     font-weight: 600;
 }
 
-/* GRAPH */
+
 .graph {
     flex: 1;
     min-height: 350px;
@@ -111,7 +105,7 @@ body {
     flex-direction: column;
 }
 
-/* SECOND BOX */
+
 .second-box {
     flex: 1;
     background: white;
@@ -126,7 +120,6 @@ body {
 }
 
 
-
 .calendar-section iframe {
     width: 1200px;
     border-radius: 12px;
@@ -134,9 +127,6 @@ body {
     display: block;
 }
 
-/* =========================
-   MOST RECENT CONTAINER
-========================= */
 .most-recent-container {
     margin-top: 25px;
     width: 100%;
@@ -154,9 +144,17 @@ body {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
+.most-recent-partner-inquiries-content {
+    margin: 15px;
+}
+
 .most-recent-partner-inquiries h2 {
     margin-top: 10px;
     color: #111827;
+}
+
+a{
+  text-decoration: none;
 }
 
 /* =========================

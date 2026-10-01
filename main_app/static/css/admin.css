@@ -1,5 +1,5 @@
 body {
-    margin-top: 90px;
+    margin-top: 50px;
     transition: transform 0.3s ease;
     overflow-x: hidden;
 }
@@ -13,6 +13,7 @@ body {
     top: 0;
     z-index: 600;
     margin: 0;
+    transition: transform 0.3s ease;
    
 }
 
@@ -55,6 +56,10 @@ body {
 
 body.menu-open .page-content {
     transform: translateX(280px);
+}
+
+.dashboard-nav.page-leaving {
+    transform: translateY(-100%);
 }
 /* MENU LINKS */
 .side-menu a {

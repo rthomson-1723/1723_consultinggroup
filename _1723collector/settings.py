@@ -32,6 +32,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = [ 
     "1723consultinggroup.com",
     "www.1723consultinggroup.com",
+    "127.0.0.1"
     ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -52,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'django.contrib.sitemaps',
+    
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -65,7 +68,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
 EMAIL_LOCAL_PART = 'info'
-
 EMAIL_SSL_CERTFILE = None
 EMAIL_SSL_KEYFILE = None
 
@@ -156,20 +158,12 @@ PHONENUMBER_DEFAULT_REGION = "US"
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 
-
 STATIC_URL = "static/"
-
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-
 LOGIN_URL = 'login/'
-
 LOGIN_REDIRECT_URL = '/dashboard/'
-
-
 LOGOUT_REDIRECT_URL = 'login/'
 

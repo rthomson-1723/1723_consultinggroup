@@ -5,7 +5,8 @@
 {% block head %}
 <title>Dashboard</title>
 <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
-<link rel="stylesheet" href="{% static 'css/dashboard-admin.css' %}" />
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<link rel="stylesheet" href="{% static 'css/partner_detail.css' %}" />
 {% endblock %}
 
 {% block content %}
@@ -43,41 +44,68 @@
 
     <div class="most-recent-container">
         <div class ="most-recent-partner-inquiries">
-            <h2>Partner inquiries</h2>
-            {% for partner in new_partners_applications %}
-                    <h4> Business Name: {{ partner.company_name }}</h4>
-                    <p>Needs: {{ partner.description|truncatewords:12 }}</p>
-                    <small>Submitted on: {{ partner.created_at|date:"M d, Y" }}</small>
-                </a>
-            {% empty %}
-                <p>No new partner inquiries in the last 30 days.</p>
-            {% endfor %}
+            <div class ="most-recent-partner-inquiries-content">
+                <h2>Partner inquiries</h2>
+                    {% for partner in new_partners_applications %}
+                        <div class ="partner-cards">
+                            <a
+                                href="{% url 'partner_detail' partner.pk %}"
+                            >
+                                    <h4> Business Name: {{ partner.company_name }}</h4>
+                                    <p>Needs: {{ partner.description|truncatewords:12 }}</p>
+                                    <small>Submitted on: {{ partner.created_at|date:"M d, Y" }}</small>
+                            </a>
+                        </div>
+                        {% empty %}
+                            <p>No new partner inquiries in the last 30 days.</p>
+                   {% endfor %}
+            </div>
+            
         </div>
 
         <div class ="most-recent-partner-inquiries">
-            <h2>Applicant's inquiries</h2>
-            {% for applicant in new_general_applications %}
-                    <h4>Applicant's name: {{ applicant.first_name }} {{ applicant.last_name }}</h4>
-                    <p>Interest: {{ applicant.interest|truncatewords:12 }}</p>
-                    <small>Submitted on: {{ applicant.created_at|date:"M d, Y" }}</small>
-                </a>
-            {% empty %}
-                <p>No new general inquiries in the last 30 days.</p>
-            {% endfor %}
+            <div class ="most-recent-partner-inquiries-content">
+                <h2>Applicant's inquiries</h2>
+                {% for applicant in new_general_applications %}
+                    <div class ="partner-cards">
+                         <a
+                            href="{% url 'dashboard' %}"
+                        >
+                            <h4>Applicant's name: {{ applicant.first_name }} {{ applicant.last_name }}</h4>
+                            <p>Interest: {{ applicant.interest|truncatewords:12 }}</p>
+                            <small>Submitted on: {{ applicant.created_at|date:"M d, Y" }}</small>
+                         </a>
+                    </div>
+                        
+                    {% empty %}
+                    <   p>No new general inquiries in the last 30 days.</p>
+                {% endfor %}
+            </div>
         </div>
 
         <div class ="most-recent-partner-inquiries">
-            <h2>Job applications</h2>
-            {% for job in new_job_applications %}
-                    <h4>Applicant's name: {{ job.first_name }} {{ job.last_name }}</h4>
-                    <p>Position applied for: {{ job.position|truncatewords:12 }}</p>
-                    <small>Submitted on:{{ job.created_at|date:"M d, Y" }}</small>
-                </a>
-            {% empty %}
-                <p>No new job applications in the last 30 days.</p>
-            {% endfor %}
+            <div class ="most-recent-partner-inquiries-content">
+                <h2>Job applications</h2>
+                {% for job in new_job_applications %}
+                    <div class ="partner-cards">
+                        <a
+                            href="{% url 'dashboard' %}"
+                        >
+                            <h4>Applicant's name: {{ job.first_name }} {{ job.last_name }}</h4>
+                            <p>Position applied for: {{ job.position|truncatewords:12 }}</p>
+                            <small>Submitted on:{{ job.created_at|date:"M d, Y" }}</small>
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>No new job applications in the last 30 days.</p>
+                {% endfor %}
+            </div>
         </div>
     <div>
+
+
+    
+
 </body>
 {% endblock %}
 
